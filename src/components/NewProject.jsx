@@ -1,15 +1,26 @@
 import Input from "./Input";
 import { useRef } from "react";
 
-export default function NewProject() {
+export default function NewProject({onAdd}) {
   let title = useRef();
   let des = useRef();
   let date = useRef();
 
   function handleInputValues() {
-    console.log(title.current.value);
-    console.log(des.current.value);
-    console.log(date.current.value);
+    // console.log(title.current.value);
+    // console.log(des.current.value);
+    // console.log(date.current.value);
+
+    let enteredTitle = title.current.value;
+    let enteredDes = des.current.value;
+    let enteredDate = date.current.value;
+
+    // validation...
+    onAdd({
+      title: enteredTitle,
+      des: enteredDes,
+      date: enteredDate,
+    });
   }
 
   return (
