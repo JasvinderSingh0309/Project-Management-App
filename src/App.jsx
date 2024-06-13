@@ -1,13 +1,20 @@
 import Sidebar from "./components/Sidebar";
-import Project from "./components/Project";
+import NoProject from "./components/NoProject";
 import NewProject from "./components/NewProject";
 
+import {useState} from "react";
+
 function App() {
+  let [addingProject, setAddingProject] = useState(false);
+
+  function handleAddProject() {
+    setAddingProject(true);
+  }
+
   return (
     <>
-      <Sidebar />
-      {/* <Project /> */}
-      <NewProject />
+      <Sidebar onAdd={handleAddProject} />
+      {addingProject? <NewProject /> :  <NoProject onAdd={handleAddProject} />}      
     </>
   );
 }
