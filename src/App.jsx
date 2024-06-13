@@ -5,16 +5,31 @@ import NewProject from "./components/NewProject";
 import {useState} from "react";
 
 function App() {
-  let [addingProject, setAddingProject] = useState(false);
+  let [projects, setProjects] = useState({
+    projectId: undefined, // doing nothing.
+    projects: [],
+  });
 
-  function handleAddProject() {
-    setAddingProject(true);
+  function handleProjectsState() {
+    setProjects(prev => {
+      return {
+        ...prev,
+        projectId:null, // adding a new project.
+      };
+    });
+  }
+
+  let content;
+  if(projects.projectId === undefined) {
+    content = <NoProject onAdd={handleProjectsState} />;
+  }else if(projects.projectId === null) {
+    content = <NewProject />;
   }
 
   return (
     <>
-      <Sidebar onAdd={handleAddProject} />
-      {addingProject? <NewProject /> :  <NoProject onAdd={handleAddProject} />}      
+      <Sidebar onAdd={handleProjectsState} />
+      {content}      
     </>
   );
 }
