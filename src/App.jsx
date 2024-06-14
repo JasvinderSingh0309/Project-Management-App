@@ -29,11 +29,10 @@ function App() {
       return {
         ...prev,
         projects: [...prev.projects, newProject],
+        projectId: undefined,
       }
     });
   }
-
-  console.log(projects);
 
   let content;
   if(projects.projectId === undefined) {
@@ -44,7 +43,7 @@ function App() {
 
   return (
     <>
-      <Sidebar onAdd={handleProjectsState} />
+      <Sidebar onAdd={handleProjectsState} projects={projects.projects} />
       {content}      
     </>
   );

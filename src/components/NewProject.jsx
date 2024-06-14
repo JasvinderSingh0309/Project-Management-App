@@ -16,6 +16,7 @@ export default function NewProject({onAdd}) {
     let enteredDate = date.current.value;
 
     // validation...
+    
     onAdd({
       title: enteredTitle,
       des: enteredDes,
