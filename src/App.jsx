@@ -34,11 +34,20 @@ function App() {
     });
   }
 
+  function handleCancel() {
+    setProjects(prev => {
+      return {
+        ...prev,
+        projectId: undefined,
+      }
+    })
+  }
+
   let content;
   if(projects.projectId === undefined) {
     content = <NoProject onAdd={handleProjectsState} />;
   }else if(projects.projectId === null) {
-    content = <NewProject onAdd={handleAddProject} />;
+    content = <NewProject onAdd={handleAddProject} onCancel={handleCancel} />;
   }
 
   return (
