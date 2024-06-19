@@ -46,7 +46,7 @@ function App() {
 
   function showSelectedProjectDetails(event) {
     let clickedProject = projects.projects.find(e => e.title === event.target.innerText);
-    console.log(clickedProject);
+    // console.log(clickedProject);
 
     setProjects(prev => {
       return {
@@ -62,12 +62,16 @@ function App() {
   }else if(projects.projectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancel} />;
   }else{
-    content = <SelectedProj />;
+    console.log("Jasvidner");
+    let proj = projects.projects.find(e => e.title === projects.projectId);
+    console.log(proj);
+    // here it gives proj as undefined, but in Sidebar projId is corretly displayed.
+    content = <SelectedProj project={proj} />;
   }
 
   return (
     <>
-      <Sidebar onAdd={handleProjectsState} projects={projects.projects} onSelect={showSelectedProjectDetails} />
+      <Sidebar onAdd={handleProjectsState} projects={projects.projects} onSelect={showSelectedProjectDetails} projId={projects.projectId} />
       {content}      
     </>
   );
