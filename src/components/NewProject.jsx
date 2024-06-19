@@ -17,7 +17,7 @@ export default function NewProject({onAdd, onCancel}) {
     // validation...
     if(!enteredTitle.trim() || !enteredDes.trim() || !enteredDate.trim()) {
       dialog.current.open();
-    }else{ // so instead of else block, it just returned;
+    }else{ // so instead of else block, its just returned;
       onAdd({
         title: enteredTitle,
         des: enteredDes,
