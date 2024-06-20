@@ -1,6 +1,9 @@
 import { useState, useRef } from "react";
 
 export default function Todo() {
+  
+  //main issue here was, how to clear input field and add the task properly. 
+
   const [todos,  setTodos] = useState([]);
   let inputValue = useRef();
   
@@ -8,7 +11,10 @@ export default function Todo() {
     if(inputValue.current.value) {
       setTodos(prev => [...prev, inputValue.current.value]);
     }
+    inputValue.current.value = "";
   }
+
+  // this is where we sjould consider using the older way to update state by just using useState(), instead of a ref.
 
   function clearTodo(index) {
     setTodos(prev => prev.filter((e,i) => i !== index));
