@@ -54,6 +54,18 @@ function App() {
     })
   }
 
+  function deleteProject(id) {
+    let projIn = projects.projects.findIndex(e => e.id === id);
+    projects.projects.splice(projIn,1);
+
+    setProjects(prev => {
+      return {
+        ...prev,
+        projectId: undefined,
+      }
+    })    
+  }
+
   let content;
   if(projects.projectId === undefined) {
     content = <NoProject onAdd={handleProjectsState} />;
@@ -61,7 +73,7 @@ function App() {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancel} />;
   }else{
     let proj = projects.projects.find(e => e.id === projects.projectId);
-    content = <SelectedProj project={proj} />;
+    content = <SelectedProj project={proj} onDelete={deleteProject} />;
 
     // it was my mistake and it should be e.id and not e.title .
     // or i can start from sidebar components as well, by passing id when clicked on a project.

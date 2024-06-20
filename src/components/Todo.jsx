@@ -10,7 +10,11 @@ export default function Todo() {
     }
   }
 
-  // console.log(todos);
+  function clearTodo(index) {
+    setTodos(prev => prev.filter((e,i) => i !== index));
+  }
+
+  console.log(todos);
 
   return (
     <div>
@@ -20,7 +24,7 @@ export default function Todo() {
         <button className="ml-3" onClick={handleAddTasks}>Add task</button>
       </div>
       {!todos.length? <p className="text-lg mt-8">This project does not have any tasks yet.</p> : 
-        <ul className="text-lg mt-8 bg-gray-200/60 px-5 py-7 rounded">{todos.map((e,i) => <li key={i}  className="flex justify-between items-center py-2 text-xl">{e} <button className=" text-base">Clear</button></li>)}</ul>
+        <ul className="text-lg mt-8 bg-gray-200/60 px-5 py-7 rounded">{todos.map((e,i) => <li key={i}  className="flex justify-between items-center py-2 text-xl">{e} <button className=" text-base" onClick={() => clearTodo(i)}>Clear</button></li>)}</ul>
       }
     </div>
     
