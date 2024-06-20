@@ -46,8 +46,6 @@ function App() {
 
   function showSelectedProjectDetails(event) {
     let clickedProject = projects.projects.find(e => e.title === event.target.innerText);
-    // console.log(clickedProject);
-
     setProjects(prev => {
       return {
         ...prev,
@@ -62,11 +60,11 @@ function App() {
   }else if(projects.projectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancel} />;
   }else{
-    console.log("Jasvidner");
-    let proj = projects.projects.find(e => e.title === projects.projectId);
-    console.log(proj);
-    // here it gives proj as undefined, but in Sidebar projId is corretly displayed.
+    let proj = projects.projects.find(e => e.id === projects.projectId);
     content = <SelectedProj project={proj} />;
+
+    // it was my mistake and it should be e.id and not e.title .
+    // or i can start from sidebar components as well, by passing id when clicked on a project.
   }
 
   return (

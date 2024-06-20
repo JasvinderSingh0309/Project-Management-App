@@ -10,7 +10,7 @@ export default function Todo() {
     }
   }
 
-  console.log(todos);
+  // console.log(todos);
 
   return (
     <div>

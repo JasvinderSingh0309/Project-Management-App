@@ -12,7 +12,6 @@ export default function Sidebar({onAdd, projects, onSelect, projId}) {
           }else {
             tailClass += " text-stone-300";
           }
-          console.log(projId);
 
           return <li key={proj.id}>
             <button onClick={onSelect} className={tailClass}>
