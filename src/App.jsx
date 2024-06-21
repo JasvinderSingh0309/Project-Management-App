@@ -9,7 +9,34 @@ function App() {
   let [projects, setProjects] = useState({
     projectId: undefined, // doing nothing.
     projects: [],
+    tasks: []
   });
+
+  function handleAddTask(todo) {
+    setProjects(prev => {
+      let newTask = {
+        todo: todo,
+        projectId: prev.projectId,
+        id: Math.random(),
+      }
+
+      return {
+        ...prev,
+        tasks: [...prev.tasks, newTask],
+      }
+    });
+  }
+
+  function handleDeleteTask(id) {
+    let projIn = projects.tasks.findIndex(e => e.id === id);
+    projects.tasks.splice(projIn,1);
+
+    setProjects(prev => {
+      return {
+        ...prev
+      }
+    })    
+  }
 
   function handleProjectsState() {
     setProjects(prev => {
@@ -73,10 +100,9 @@ function App() {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancel} />;
   }else{
     let proj = projects.projects.find(e => e.id === projects.projectId);
-    content = <SelectedProj project={proj} onDelete={deleteProject} />;
+    let tasks = projects.tasks.filter(e => e.projectId === projects.projectId);
 
-    // it was my mistake and it should be e.id and not e.title .
-    // or i can start from sidebar components as well, by passing id when clicked on a project.
+    content = <SelectedProj project={proj} onDelete={deleteProject} onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} tasks={tasks} />;
   }
 
   return (

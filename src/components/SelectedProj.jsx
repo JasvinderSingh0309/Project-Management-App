@@ -1,6 +1,6 @@
 import Todo from "./Todo";
 
-export default function SelectedProj({project, onDelete}) {
+export default function SelectedProj({project, onDelete, onAddTask, onDeleteTask, tasks}) {
 
   let formattedDate = new Date(project.date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -16,7 +16,7 @@ export default function SelectedProj({project, onDelete}) {
         </div>
         <p className="my-3 text-xl text-gray-400">{formattedDate}</p>
         <p className="py-4 text-xl border-b-4 border-gray-300">{project.des}</p>
-        <Todo />
+        <Todo onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
       </div>
   );
 }
